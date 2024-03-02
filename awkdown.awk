@@ -15,7 +15,7 @@ END {
         render(data[i])
 
     # Catch any trailing unclosed tags
-    if (inq) render()
+    if (inquote || inul || inol || inpre) render()
 
     print "</body>"
     print "</html>"
