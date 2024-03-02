@@ -8,16 +8,28 @@ A Markdown renderer written in Awk.
 awk -f awkdown.awk README.md
 ```
 
+---
+
 ## Demo
 
-### Subsection one
+Here's an [example link](https://www.mgmarlow.com/).
 
-**Todos:**
+How about some _italicized text_? Maybe you're *feeling bold* instead.
+
+# Header one
+
+## Header two
+
+### Header three
+
+#### Header four
+
+Unordered list:
 
 - Buy trail mix
 - Eat trail mix
 
-_numbered list_:
+Numbered list:
 
 1. Do one thing
 2. Do another thing
