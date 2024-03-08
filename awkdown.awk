@@ -13,7 +13,7 @@ BEGIN {
 /^### /             { print "<h3>" substr($0, 5) "</h3>"; next }
 /^#### /            { print "<h4>" substr($0, 6) "</h4>"; next }
 /^---$/             { print "<hr />"; next }
-inpre && /^```/     { print "</pre>"; inpre = 0; next }
+inpre && /^```/     { flush(); print "</pre>"; inpre = 0; next }
 /^```/              { print "<pre>"; inpre = 1; next }
 /^-/                { if (!inul) print "<ul>"; inul = 1; print "<li>" substr($0, 3) "</li>"; next }
 inul && !/^-/       { print "</ul>"; inul = 0; next }
@@ -33,6 +33,13 @@ END {
 function collect(v) {
     line = line sep v
     sep = " "
+}
+
+function flush() {
+    if (line) {
+        print line
+        line = sep = ""
+    }
 }
 
 function flushp() {
