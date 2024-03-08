@@ -51,10 +51,11 @@ function render(line) {
         gsub(/\*(.*)\*/, sprintf("<strong>%s</strong>", substr(line, RSTART+1, RLENGTH-2)), line)
     }
 
-#     if (match(line, /(.*)\[(.+)\]\((.+)\)(.*)/, pats)) {
-#         gsub(/(.*)\[(.+)\]\((.+)\)(.*)/,
-#              sprintf("%s<a href='%s'>%s</a>%s", pats[1], pats[3], pats[2], pats[4]), line)
-#     }
+    if (match(line, /\[.+\]\(.+\)/)) {
+        inner = substr(line, RSTART+1, RLENGTH-2)
+        split(inner, spl, /\]\(/)
+        gsub(/\[.+\]\(.+\)/, sprintf("<a href=\"%s\">%s</a>", spl[2], spl[1]), line)
+    }
 
     return line
 }
